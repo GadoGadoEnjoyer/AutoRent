@@ -1,0 +1,64 @@
+html, body {
+    position: relative;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+body {
+    overflow: auto;
+    background: linear-gradient(180deg, rgba(102,102,102,0.2413165949973739) 0%, rgba(255,255,255,1) 90%), url("../image/wallpaper.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7rem;
+    color: #ffffff;
+    text-align: center;
+}
+a:visited, a:hover, a:focus {
+    text-decoration: none;
+    color: #ffffff;
+}
+.gridwrap{
+    width: calc(100px + 55vw);
+    height: calc(200px + 40vh);
+    margin: 10% auto;
+    display: flex;
+    align-items:stretch;
+}
+.gridwrap > button{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: calc(10px + 1.5vw);
+    color: #ffffff;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(87,87,87,0.44019614681810226) 50%);
+    background-size:200% 200%;
+    background-position: 100% 100%;
+    cursor: pointer;
+    padding-top:10%;
+    padding-bottom:15%;
+    flex:1;
+    animation: coolhover 2.2s ease 1;
+}
+.gridwrap > button:hover{
+    animation: reversecoolhover 0.5s ease 1;
+    background-position: 0% 0%
+}
+@keyframes coolhover{
+    0%{background-position: 0% 0%}
+    100%{background-position: 100% 100%}
+}
+@keyframes reversecoolhover{
+    0%{background-position: 100% 100%}
+    100%{background-position: 0% 0%}
+}
+.gridwrap > button > img{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10%;
+}
