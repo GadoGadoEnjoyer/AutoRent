@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body class="registercar d-flex align-items-center justify-content-center">
-    <form action="{{ route('registerCar') }}" method="POST">
+    <form action="{{ route('registerCar') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
         <label for="model">Model</label>
@@ -28,6 +28,11 @@
         <label for="price">Price per day</label>
         <input type="number" name="price">
         </div>
+        <div class="row">
+        <label for="Imagelink">Image</label>
+        <input type="file" name="Imagelink">
+        </div>
+        <br>
         <div class="row">
         <button type="submit">Register!</button>
         </div>

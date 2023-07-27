@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Car;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -15,13 +16,19 @@ class CarController extends Controller
             'user_id' => 'required',
             'color' => 'required',
             'price' => 'required',
+            'Imagelink' => 'required'
         ]);
+        
+        $file = $request->file('Imagelink');
+        $newFilename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        Storage::disk('public')->put($newFilename, file_get_contents($file));    
+
         Car::create([
             'model' => $validated['model'],
             'user_id' => $validated['user_id'],
             'color' => $validated['color'],
             'price' => $validated['price'],
-           
+            'Imagelink' => $newFilename
         ]);
         return redirect('/carlist');
     }

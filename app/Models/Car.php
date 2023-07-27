@@ -17,7 +17,8 @@ class Car extends Model
         'price',
         'isRented',
         'Renter',
-        'rentLimit'
+        'rentLimit',
+        'Imagelink'
     ];
 
     function owner():HasOne{
