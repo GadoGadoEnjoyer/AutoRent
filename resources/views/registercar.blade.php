@@ -18,6 +18,8 @@
         <input type="text" name="color">
         <label for="price">Price per day</label>
         <input type="number" name="price">
+        <label for="Imagelink">Image</label>
+        <input type="file" name="Imagelink">
         </div>
         <div class="row">
         <button type="submit">Register!</button>
