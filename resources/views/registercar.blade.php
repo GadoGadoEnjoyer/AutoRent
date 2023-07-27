@@ -7,7 +7,7 @@
     <title>Register Your Car!</title>
 </head>
 <body>
-    <form action="{{ route('registerCar') }}" method="POST" enctype="multipart/form-data>
+    <form action="{{ route('registerCar') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="model">Model</label>
         <input type="text" name="model">
