@@ -14,6 +14,11 @@
          <p>Color : {{ $car->color }}</p>
          <p>Price : {{ $car->price }}$ per Day</p>
          <br>
+         @if(isset($car->Imagelink))
+            <img src="{{ url('../'.$car->Imagelink) }}" alt="car image">
+         @else
+            <img src="{{ url('../image/default.png') }}" alt="car image">
+        @endif
          <button><a href={{ route('bukarentCar',$car->id) }}>RENT THIS CAR!</a></button>
         @endif
     @endforeach

@@ -7,7 +7,7 @@
     <title>Register Your Car!</title>
 </head>
 <body>
-    <form action="{{ route('registerCar') }}" method="POST">
+    <form action="{{ route('registerCar') }}" method="POST" enctype="multipart/form-data>
         @csrf
         <label for="model">Model</label>
         <input type="text" name="model">
@@ -18,6 +18,8 @@
         <input type="text" name="color">
         <label for="price">Price per day</label>
         <input type="number" name="price">
+        </div>
+        <div class="row">
         <button type="submit">Register!</button>
     </form>
 </body>
