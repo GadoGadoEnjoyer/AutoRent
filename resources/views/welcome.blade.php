@@ -10,7 +10,7 @@
   </head>
 
 </head>
-<body class="h-100 m-0 p-0">
+<body class="h-100 m-0 p-0 welcome">
     <div class="container-fluid h-100 w-100">
         
         <div class="row justify-content-center mt-3 mb-5">
