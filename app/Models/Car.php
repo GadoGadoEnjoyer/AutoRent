@@ -24,4 +24,7 @@ class Car extends Model
     function owner():HasOne{
         return $this->HasOne(User::class,'id','user_id');
     }
+    function RenterUser():HasOne{
+        return $this->HasOne(User::class,'id','Renter');
+    }
 }
