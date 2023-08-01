@@ -38,7 +38,7 @@
             </div>
             @if(Auth::user())
             <div class="col-sm-2 col-md-2 col-lg-2 text-center mt-5">
-                <button class="btn btn-outline-light h-50 w-25"><img src="../image/business-card-icon.svg" class="w-100 h-100"></button>
+                <button class="btn btn-outline-light h-50 w-25" onclick="window.location='{{ route("bukaprofile",Auth::User()) }}'"><img src="../image/business-card-icon.svg" class="w-100 h-100"></button>
                 <br>
                 <span class="fs-4">Profile</span>
             </div>

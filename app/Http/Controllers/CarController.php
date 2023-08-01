@@ -39,10 +39,13 @@ class CarController extends Controller
         return view('registercar',['username'=>$username,'userid'=>$userid]);
     }
     function carlist(){
-        $cars = Car::get();
+        $cars = Car::where('isRented',0)->where('user_id', '<>',Auth::user()->id)->get();
         return view('carlist',['cars'=>$cars]);
     }
     function bukarentCar(Car $car){
+        if($car->user_id == Auth::user()->id || $car->isRented == 1){
+            return redirect('/carlist');
+        }
         return view('rentcar',['car'=>$car]);
     }
     //Update
@@ -54,6 +57,19 @@ class CarController extends Controller
             'isRented' => 1,
             'Renter' => Auth::user()->id,
             'rentLimit' => $validated['rentLimit']
+        ]);
+        return redirect('/carlist');
+    }
+
+    function returncar(Request $request, Car $car){
+        $now = date("Y-m-d");
+        if($now > $car->rentLimit){
+            return redirect('/denda/'.$car->id);
+        }
+        $car->update([
+            'isRented' => 0,
+            'Renter' => null,
+            'rentLimit' => null
         ]);
         return redirect('/carlist');
     }

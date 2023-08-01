@@ -7,8 +7,11 @@
     <title>Cars for Rent!</title>
 </head>
 <body>
+    @if($cars->isEmpty())
+        <h1>NO CAR TO RENT</h1>
+        <h2>MASSIVE SKILL ISSUE LMAO</h2>
+    @endif
     @foreach ($cars as $car)
-        @if(!$car->isRented == 1)
          <p>Model : {{ $car->model }}</p>
          <p>Owner : {{ $car->owner->name }}</p>
          <p>Color : {{ $car->color }}</p>
@@ -20,7 +23,6 @@
             <img src="{{ url('../image/default.png') }}" alt="car image">
         @endif
          <button><a href={{ route('bukarentCar',$car->id) }}>RENT THIS CAR!</a></button>
-        @endif
     @endforeach
 </body>
 </html>

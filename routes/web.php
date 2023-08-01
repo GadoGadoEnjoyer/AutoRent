@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/rentcar/{car}',[CarController::class, 'rentCar'])->name('rentcar');
 
     Route::get('/profile/{user}',[UserController::class, 'bukaprofile'])->name('bukaprofile');
+    
+    Route::patch('/returncar/{car}',[CarController::class, 'returncar'])->name('returncar');
 });
 
 

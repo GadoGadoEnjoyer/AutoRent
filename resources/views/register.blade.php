@@ -25,7 +25,7 @@
             <div class="row mt-2">
             <label for="password">Password</label>
             <br>
-            <input type="text" name="password">
+            <input type="password" name="password">
             </div>
             <div class="row mt-5">
             <button type="submit" class="btn btn-primary">Register!</button>

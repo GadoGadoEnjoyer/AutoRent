@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Car;
 
 class UserController extends Controller
 {
@@ -64,7 +65,14 @@ class UserController extends Controller
 
     function bukaprofile(User $user){
         $userlist = User::get();
-        return view('profile',['user'=>$user,'userlist'=>$userlist]);
+        $cars = Car::where('renter',$user->id)->get();
+        $now = date("Y-m-d");
+        $isUser = false;
+        if(Auth::user()->id == $user->id){
+            $isUser = true;
+        }
+
+        return view('profile',['user'=>$user,'userlist'=>$userlist,'cars'=>$cars,'now'=>$now,'isUser'=>$isUser]);
     }
     //Update
     function updateuser(Request $request, User $user){
