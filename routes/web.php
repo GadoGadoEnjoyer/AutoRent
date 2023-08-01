@@ -25,10 +25,11 @@ Route::get('/login', [UserController::class, 'bukalogin'])->name('bukalogin');
 Route::post('/login',[UserController::class, 'login'])->name('login');
 
 Route::middleware(['isAdmin'])->group(function () {
-    Route::get('/admin',[UserController::class, 'admin'])->name('admin')->middleware('isAdmin');
-    Route::get('/updateuser/{user}',[UserController::class, 'bukaupdateuser'])->middleware('isAdmin')->name('bukaupdateuser');
-    Route::patch('/updateuser/{user}',[UserController::class, 'updateuser'])->middleware('isAdmin')->name('updateuser');
-    Route::get('/deleteuser/{user}',[UserController::class, 'deleteuser'])->middleware('isAdmin')->name('deleteuser');
+    Route::get('/admin',[UserController::class, 'admin'])->name('admin');
+    Route::get('/updateuser/{user}',[UserController::class, 'bukaupdateuser'])->name('bukaupdateuser');
+    Route::patch('/updateuser/{user}',[UserController::class, 'updateuser'])->name('updateuser');
+    Route::patch('/unbanuser/{user}',[UserController::class, 'unbanuser'])->name('unbanuser');
+    Route::get('/deleteuser/{user}',[UserController::class, 'deleteuser'])->name('deleteuser');
 });
 
 
@@ -37,13 +38,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/carlist',[CarController::class, 'carlist'])->name('carlist');
     Route::get('/registercar/',[CarController::class, 'bukaregisterCar'])->name('bukaregisterCar');
-    Route::post('/registercar/',[CarController::class, 'registerCar'])->name('registerCar');
-    Route::get('/rentcar/{car}',[CarController::class, 'bukarentCar'])->name('bukarentCar');
-    Route::patch('/rentcar/{car}',[CarController::class, 'rentCar'])->name('rentcar');
-
+    
     Route::get('/profile/{user}',[UserController::class, 'bukaprofile'])->name('bukaprofile');
     
     Route::patch('/returncar/{car}',[CarController::class, 'returncar'])->name('returncar');
+
+});
+Route::middleware(['auth','isBanned'])->group(function () {
+    Route::post('/registercar/',[CarController::class, 'registerCar'])->name('registerCar');
+    Route::get('/rentcar/{car}',[CarController::class, 'bukarentCar'])->name('bukarentCar');
+    Route::patch('/rentcar/{car}',[CarController::class, 'rentCar'])->name('rentcar');
+    Route::get('/denda/{car}',[CarController::class, 'bukadenda'])->name('bukadenda');
+    Route::patch('/denda/{car}',[CarController::class, 'denda'])->name('denda');
+
 });
 
 
