@@ -45,7 +45,8 @@ class UserController extends Controller
     }
     function admin(){
         $users = User::get();
-        return view('admin',['users' => $users]);
+        $banneduser = User::where('isBanned',1)->get();
+        return view('admin',['users' => $users,'banneduser' => $banneduser]);
     }
     function login(Request $request){
         $validated = $request->validate([
@@ -86,11 +87,16 @@ class UserController extends Controller
         ]);
         return redirect('/admin');
     }
+    function unbanuser(User $user){
+        $user->update([
+            'isBanned' => 0
+        ]);
+        return redirect('/admin');
+    }
 
     //Delete
     function deleteuser(User $user){
         $user->delete();
         return redirect('/admin');
     }
-    
 }

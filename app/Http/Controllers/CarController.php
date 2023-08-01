@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Car;
+use App\Models\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
@@ -16,12 +18,17 @@ class CarController extends Controller
             'user_id' => 'required',
             'color' => 'required',
             'price' => 'required',
-            'Imagelink' => 'required'
+            'Imagelink' => 'nullable'
         ]);
         
-        $file = $request->file('Imagelink');
-        $newFilename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-        Storage::disk('public')->put($newFilename, file_get_contents($file));    
+        if(isset($validated['Imagelink'])){
+            $file = $request->file('Imagelink');
+            $newFilename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            Storage::disk('public')->put($newFilename, file_get_contents($file));
+        }
+        else{
+            $newFilename = null;
+        }    
 
         Car::create([
             'model' => $validated['model'],
@@ -72,5 +79,30 @@ class CarController extends Controller
             'rentLimit' => null
         ]);
         return redirect('/carlist');
+    }
+
+    function bukadenda(Car $car){
+
+        $now = Carbon::now();
+        $carlimit = Carbon::parse($car->rentLimit);
+        $besardenda = $now->diffInDays($carlimit);
+        //This is needlessly complicated and I hate this.
+        //NVM CARBON GOD BLESS YOU
+        return view('denda',['car'=>$car,'now'=>$now,'besardenda'=>$besardenda]);
+    }
+
+    function denda(Car $car){
+        $user = User::find($car->RenterUser->id);
+        $user->update([
+            'isBanned' => 1,
+        ]);
+        $car->update([
+            'isRented' => 0,
+            'Renter' => null,
+            'rentLimit' => null
+        ]);
+
+
+        return redirect('/');
     }
 }
