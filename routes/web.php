@@ -30,6 +30,11 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::patch('/updateuser/{user}',[UserController::class, 'updateuser'])->name('updateuser');
     Route::patch('/unbanuser/{user}',[UserController::class, 'unbanuser'])->name('unbanuser');
     Route::get('/deleteuser/{user}',[UserController::class, 'deleteuser'])->name('deleteuser');
+
+    Route::delete('/deletediskon/{diskon}',[UserController::class, 'deletediskon'])->name('deletediskon');
+    Route::patch('/editdiskon/{diskon}',[UserController::class, 'editdiskon'])->name('editdiskon');
+    Route::get('/buatdiskon',[UserController::class, 'bukabuatdiskon'])->name('bukabuatdiskon');
+    Route::post('/buatdiskon',[UserController::class, 'buatdiskon'])->name('buatdiskon');
 });
 
 
@@ -48,6 +53,7 @@ Route::middleware(['auth','isBanned'])->group(function () {
     Route::post('/registercar/',[CarController::class, 'registerCar'])->name('registerCar');
     Route::get('/rentcar/{car}',[CarController::class, 'bukarentCar'])->name('bukarentCar');
     Route::patch('/rentcar/{car}',[CarController::class, 'rentCar'])->name('rentcar');
+    Route::get('/cekdiskon/{car}',[UserController::class, 'cekdiskon'])->name('cekdiskon');
     Route::get('/denda/{car}',[CarController::class, 'bukadenda'])->name('bukadenda');
     Route::patch('/denda/{car}',[CarController::class, 'denda'])->name('denda');
 
