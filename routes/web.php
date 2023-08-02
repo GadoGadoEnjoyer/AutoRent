@@ -29,7 +29,7 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::get('/updateuser/{user}',[UserController::class, 'bukaupdateuser'])->name('bukaupdateuser');
     Route::patch('/updateuser/{user}',[UserController::class, 'updateuser'])->name('updateuser');
     Route::patch('/unbanuser/{user}',[UserController::class, 'unbanuser'])->name('unbanuser');
-    Route::get('/deleteuser/{user}',[UserController::class, 'deleteuser'])->name('deleteuser');
+    Route::delete('/deleteuser/{user}',[UserController::class, 'deleteuser'])->name('deleteuser');
 
     Route::delete('/deletediskon/{diskon}',[UserController::class, 'deletediskon'])->name('deletediskon');
     Route::patch('/editdiskon/{diskon}',[UserController::class, 'editdiskon'])->name('editdiskon');

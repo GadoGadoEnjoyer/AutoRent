@@ -42,7 +42,7 @@
                 displayText.textContent = realdiff + "Days! for only " + price + " dollars!";
                 @isset(session('diskon')->jumlah_diskon)
                 const diskonan = price/100 * {{session('diskon')->jumlah_diskon}}
-                const hargadiskon = price - diskonan;
+                const hargadiskon = Math.ceil(price - diskonan);
                     displayText.textContent = realdiff + "Days! for only " + price + " dollars! And with discount you only pay " + hargadiskon + "dollar!";
                 @endisset
             });

@@ -27,18 +27,24 @@
         <form action="{{ route('unbanuser',$banuser->id) }}" method="POST">
             @csrf
             @method('patch')
+            <input type="hidden" name="isBanned" value=0>
             <button type="submit">Unban?</button>
+        </form>
     @endforeach
+
     @foreach ($diskonlist as $diskon)
         <p>Nama : {{ $diskon->nama_diskon }}</p>
         <p>Jumlah : {{ $diskon->jumlah_diskon }} %</p>
         <br>
+
         <form action="{{ route('deletediskon',$diskon->id) }}" method="POST">
             @csrf
             @method('delete')
             <button type="submit">Delete</button>
         </form>
+
         <br>
+
         <form action="{{ route('editdiskon',$diskon->id) }}" method="POST">
             @csrf
             @method('patch')
@@ -46,6 +52,7 @@
             <input type="number" name="jumlah_diskon" placeholder="Jumlah Diskon" value={{ $diskon->jumlah_diskon }}>
             <button type="submit">Update</button>
         </form>
+
         <br>
     @endforeach
     <button onclick="window.location.href='{{ route('bukabuatdiskon') }}'">Tambah Diskon</button>
