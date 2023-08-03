@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register!</title>
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css'); }} ">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
-<body class="register d-flex align-items-center justify-content-center">
-    <div class="container h-100 w-25">
-        <form action="{{ route('register') }}" method="POST" class="border border-dark p-5 m-5">
+<body>
+    <div>
+        <form action="{{ route('register') }}" method="POST">
             @csrf
-            <div class="row">
+            <div>
             <label for="name">Name</label>
             <br>
             <input type="text" name="name">
             </div>
-            <div class="row mt-2">
+            <div>
             <label for="email">Email</label>
             <br>
             <input type="text" name="email">
             </div>
-            <div class="row mt-2">
+            <div>
             <label for="password">Password</label>
             <br>
             <input type="password" name="password">
             </div>
-            <div class="row mt-5">
-            <button type="submit" class="btn btn-primary">Register!</button>
+            <div>
+            <button type="submit">Register!</button>
             </div>
         </form>
     </div>
