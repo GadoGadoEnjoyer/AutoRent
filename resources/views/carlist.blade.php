@@ -25,7 +25,7 @@
             <img src="{{ url('../image/default.png') }}" alt="car image" style="width:90%;max-height:80%;grid-area: img;">
         @endif
         <div style="grid-area: desc;overflow-y:scroll;max-height:75%;overflow-wrap:normal;scrollbar-width:thin;padding-right:0%;overflow-x:hidden;scrollbar-color:#C4C4C4 #5D5D5D ">
-         <p style="inline-size:100%;">Model : {{ $car->model }}<br>Owner : {{ $car->owner->name }}<br>Color : <span style="background-color:{{ $car->color }};">{{ $car->color }}</span><br>Price : {{ $car->price }}$ per Day</p>
+         <p style="inline-size:100%;">Model : {{ $car->model }}<br>Owner : {{ $car->owner->name }}<br>Color : {{ $car->color }}<br>Price : {{ $car->price }}$ per Day</p>
          <br>
         </div>
         <button onclick="window.location='{{ route('bukarentCar',$car->id) }}'" style="grid-area: butt;max-width:45%;min-height:100%;justify-self:center;border-radius:10px;background-color:#9D9D9D;color:white;"><span>RENT THE CAR!</span></button>
